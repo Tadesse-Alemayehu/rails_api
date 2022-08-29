@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #TODO empliment all this with authorization
   def index
     @users=User.all
     respond_to do |format|
@@ -15,9 +16,19 @@ class UsersController < ApplicationController
         end
   end
 
-  # def add
-  # end
+  def create
+    puts params
+    newuser=User.new(name: params[:name],email: params[:email]);
+    newuser.save!
+  end
 
-  # def remove
-  # end
+  def destroy
+    puts params
+    user=User.find(params[:id]);
+    user.destroy
+        respond_to do |format|
+          format.json { head :no_content}
+        end
+
+  end
 end
