@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :photo, null: false, default: ''
       t.string :bio, null: false, default: ''
       t.integer :postCount, null: false, default: 0
-
+      t.string :password, null: false, default: '123456'
       t.timestamps
     end
   end

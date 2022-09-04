@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_175543) do
     t.string "photo", default: "", null: false
     t.string "bio", default: "", null: false
     t.integer "postCount", default: 0, null: false
+    t.string "password", default: "123456", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
