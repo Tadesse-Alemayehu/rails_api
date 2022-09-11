@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorize_user_with_token, only: [:show]
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token
   def index
         respond_to do |format|
           format.html
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    # this is only for html render
   end
 
   def create
@@ -37,6 +38,27 @@ class UsersController < ApplicationController
     end
   end
   def destroy
+    user=User.find(@current_user.id)
+    if user
+      Like.where(user: user).destroy_all
+      Comment.where(user: user).destroy_all
+      posts=Post.where(user: user)
+      posts.each do |post|
+      Like.where(post: post).destroy_all
+      Comment.where(post: post).destroy_all
+      end
+      posts.destroy_all
+      user.destroy
+          respond_to do |format|
+            format.html {render :index}
+            format.json {render :json =>[], :status => :ok }
+          end
+        else
+          respond_to do |format|
+            format.html {render :index}
+            format.json {render :json =>[], :status =>:internal_server_error }
+          end
+    end
   end
 
   def edit
