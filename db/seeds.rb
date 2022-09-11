@@ -1,6 +1,24 @@
-first_user = User.create(name: 'Tom', photo: 'https://picsum.photos/id/1/200/300', bio: 'Teacher from Mexico.', postCount: 0)
-admin = User.create(name: 'admin', photo: 'https://picsum.photos/id/1/200/300', bio: 'system admin.', postCount: 0, role: 'admin')
-second_user = User.create(name: 'Lilly', photo: 'https://picsum.photos/id/2/200/300', bio: 'Teacher from Poland.', postCount: 0)
+first_user = User.create(
+    name: 'Tom',
+    photo: 'https://picsum.photos/id/1/200/300',
+    bio: 'Teacher from Mexico.',
+    postCount: 0,
+    email: "first_user@gmail.com"
+)
+admin = User.create(
+    name: 'admin',
+    photo: 'https://picsum.photos/id/1/200/300',
+    bio: 'system admin.',
+    postCount: 0,
+    role: 'admin',
+    email: "admin@gmail.com"
+)
+second_user = User.create(name: 'Lilly',
+    photo: 'https://picsum.photos/id/2/200/300',
+    bio: 'Teacher from Poland.',
+    postCount: 0,
+    email: "second_user@gmail.com"
+)
 (1..4).each do |i|
     Post.create(user: first_user, title: "Hello ##{i}", text: "This is my post #{i}",commentsCount: 0,likesCount: 0)
 end
