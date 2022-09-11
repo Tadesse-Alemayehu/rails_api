@@ -3,12 +3,18 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.html
           format.json do
-            render :json => @current_user
+            render :json => User.all
           end
         end
   end
 
   def show
+        respond_to do |format|
+          format.html
+          format.json do
+            render :json => @current_user
+          end
+        end
   end
 
   def new
